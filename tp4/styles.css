@@ -1,1 +1,37 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    gap: 0;
+    border: 3px solid #000;
+}
+
+div {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-right: 3px solid #000;
+    border-bottom: 3px solid #000;
+    box-sizing: border-box;
+    border-top: 3px solid #000;
+    margin: 5px;
+    border-left: 3px solid #000;
+}
+
+
+h1 {
+    margin: 0;
+    font-size: 48px;
+    border: none;
+}
