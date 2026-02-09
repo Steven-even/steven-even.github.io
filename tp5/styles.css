@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 20px;
+    padding-bottom: 30px;
     display: flex;
     justify-content: center;
 }
@@ -30,7 +31,7 @@ h1{
 
 .container {
     width: 100%;
-    max-width: 1200px;
+    height: auto;
     text-align: center;
 }
 
@@ -43,46 +44,81 @@ h1{
     backface-visibility: hidden;
     perspective: 1000px;
     
-    
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.outerCard {
+  position: relative;
+  width: 20vw;
+  height: 35vw;
+  max-width: 20vw;
+  max-height: 25vw;
+  perspective: 1000px; /* special CSS property relevant to 3D flips */
+}
+
+.cardContent {
+  position: absolute; /* positioning within the parent card object */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d; /* special CSS property relevant to 3D flips */
+}
+
+.outerCard:hover .cardContent {
+  transform: rotateY(180deg); /* simulate a 3D flip */
 }
 
 .card {
-    flex: 0 1 calc(25% - 15px);
-    min-width: 200px;
-    max-width: 250px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    background-color: rgb(219, 219, 219);
-    transform: rotateY(180deg);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    background-color: rgba(138, 138, 138, 0.9);
-    transform: rotateY(360deg);
-    transition: .8s;
+  position: absolute;
+  flex: 0 1 calc(25% - 15px);
+  width: 200px;
+  height: 250px;
+  align-items: center;
+  border: 1px solid #ffffff;
+  padding: 1vw;
+  transition: transform 0.3s ease;
+  transform: rotateY(180deg);
+  align-items: center;
+  text-align: center;
 }
 
 .card h2 {
-    margin: 10px 0;
-    font-size: 1.8em;
-    font-family: "Barrio", system-ui;
-    font-weight: 400;
-    font-style: normal;
+  position: relative;
+  font-size: 2em;
+  font-family: "Barrio", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .card-img {
-    width: 100%;
-    border-radius: 4px;
-    min-height: 25vh;
-    min-width: 100%;
-    background-size: cover;
-    background-position: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  width:91%;
+  height: 70%;
+  border-radius: 4px;
+  background-size: cover;
+  background-position: center;
+
 }
+
+
+.cardTop,
+.card {
+  position: absolute; /* positioning within the parent cardContent object */
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  backface-visibility: hidden; /* special CSS property relevant to 3D flips */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} 
+
+
 
 
 

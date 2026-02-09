@@ -29,6 +29,7 @@ header h1{
     color: rgb(46, 78, 133);
     background-color: white;
     border-radius: 12px;
+
 }
 
 .background-image{
@@ -42,9 +43,26 @@ header h1{
 .side-by-side {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2em;
+    gap: 1em;
     width: 80%;
     text-align: center;
+}
+
+.forecast-day p{
+    margin: 0.2em 0;
+    font-size: 2em;
+}
+
+.wind-speed, .wind-direction{
+    font-size: 1.4em;
+    color: rgb(46, 78, 133);
+    padding: 0.2em 0;
+    margin: auto;
+}
+
+.date{
+    font-size: .7em;
+    color: rgb(46, 78, 133);
 }
 .summary {
     background-color: #e9f2f9;
