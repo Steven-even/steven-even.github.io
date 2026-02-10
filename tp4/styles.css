@@ -7,7 +7,7 @@ body {
     background-color: #f0f0f0;
 }
 
-.grid-container {
+section {
     display: grid;
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
@@ -36,3 +36,18 @@ h1 {
     border: none;
 }
 
+@media (max-width: 500px) {
+    section {
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+    }
+
+    div {
+        width: 100px;
+        height: 100px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+}
