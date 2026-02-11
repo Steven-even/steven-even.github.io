@@ -64,18 +64,28 @@ header h1{
     grid-template-columns: 1fr 1fr;
     gap: 1em;
     width: 100%;
+    height: auto;
     text-align: center;
+    align-items: center;
+    align-content: center;
+    padding: 1rem;
 }
 
+.forecast-day{
+      background-color: #e9f2f9;
+      border-radius: 12px;
+      width: 9vw;
+
+}
 .forecast-day p{
-    margin: 0.2em 0;
+    margin: 0.5em 0;
     font-size: 2em;
 }
 
 .wind-speed, .wind-direction{
     font-size: 1.4em;
     color: rgb(46, 78, 133);
-    padding: 0.2em 0;
+    padding: .2em 0;
     margin: auto;
 }
 
@@ -88,10 +98,10 @@ header h1{
     padding: 1em;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 50%;
-  align-self: center;
-  margin: 0 auto;
-  height: auto;
+    width: 50%;
+    align-self: center;
+    margin: 0 auto;
+    height: auto;
  }
 
 .header-inner{
@@ -142,7 +152,7 @@ header h1{
   font-weight: 400;
   font-style: normal;
   font-size: clamp(0.9rem, 2.5vw, 1.2em);
-
+  float: left;
 }
 
 .nav-btn{
