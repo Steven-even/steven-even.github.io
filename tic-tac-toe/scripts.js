@@ -55,7 +55,7 @@ let currentPlayer;
     tictactoe[1][1] === tictactoe[2][0]
   ) {
     return tictactoe[0][2];
-  }else if (remainingTurns == 0) {
+  }else if ((winState =="d") && (remainingTurns == 0)) {
 
   return "draw";
 }
