@@ -7,7 +7,7 @@ body {
     background-color: #f0f0f0;
 }
 
-section {
+.gameBoard {
     display: grid;
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
@@ -34,6 +34,13 @@ h1 {
     margin: 0;
     font-size: 48px;
     border: none;
+}
+
+.box:hover{
+    background-color: rgba(56, 8, 107, 0.499);
+    margin: 10px;
+    transition: .4s;
+    border: 1px solid #000;
 }
 
 
