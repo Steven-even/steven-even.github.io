@@ -12,11 +12,12 @@ remainingTurns = 9;
 
 //blank variable for current player
 let currentPlayer;
-
+// Track if game is over
+let gameOver = false;
 
 // Funstion to check the gameboard for a win or draw
 function checkGameboard(tictactoe) {
-
+  let winState = "d";
   //rows
   for (let row = 0; row < 3; row++) {
     if (
@@ -56,20 +57,15 @@ function checkGameboard(tictactoe) {
   ) {
     return tictactoe[0][2];
   }
-
-  // check for draw
-  if (remainingTurns == 0) {
-    return "draw";
-  }
-
-  return null;
+  return winState;
 }
 
 //Function to handle clicks
 function clickSquare() {
+  // Check if game is over
 
   // check if space is empty
-  if (this.innerHTML == "") {
+  if ((this.innerHTML == "") && (!gameOver)) {
 
 
     //set Space
@@ -93,28 +89,31 @@ function clickSquare() {
     console.log(tictactoe);
 
 
-    let gameOutputMsg = document.querySelector("#gameResult");
+    let gameOutputMsg = document.querySelector("#gameResult span");
 
     // call your function checkGameboard() with the 3 rows
 
-    winState = checkGameboard(tictactoe)
+    let winState = checkGameboard(tictactoe);
 
 
     // test the returned value of the function
     if (winState == "x") {
       gameOutputMsg.innerHTML = "X wins";
+      gameOver = true;
 
     } else if (winState == "o") {
       gameOutputMsg.innerHTML = "O wins";
+      gameOver = true;
 
-    } else if (winState == "d") {
-      gameOutputMsg.innerHTML = "draw";
+    } else if ((winState == "d") && (remainingTurns == 0)) {
+      gameOutputMsg.innerHTML = "Draw";
+      gameOver = true;
 
-    } else {
-      gameOutputMsg.innerHTML = "unknown";
     }
 
-
+    if (gameOver) {
+      document.querySelector("#gameResult").style.display = "block";
+    }
 
     //flip between turns
     if (currentTurn == "x") currentTurn = "o";
@@ -126,7 +125,13 @@ function clickSquare() {
   }
 }
 
+// Get the button element by its ID
+    let refreshBtn = document.getElementById("refreshButton");
 
+    // Add a click event listener to the button
+    refreshBtn.addEventListener("click", function() {
+        window.location.reload();
+    });
 
 //waits for document to load
 document.addEventListener("DOMContentLoaded", function () {
@@ -138,32 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
     eachSpace.addEventListener("click", clickSquare);
   }
   currentPlayer = document.querySelector("#currentPlayer span");
-  currentPlayer.innerHTML = currentTurn;
+  currentPlayer.innerHTML = currentTurn.toUpperCase();
 });
 
-
-/*
-
-// get a handle on the DOM element to be updated with the outcome
-let gameOutputMsg = document.querySelector("#gameResult span");
-
-// call your function checkGameboard() with the 3 rows
-
-let winState = checkGameboard(tictactoe)
-
-
-// test the returned value of the function
-if (winState == "x") { 
-  gameOutputMsg.innerHTML = "X wins";
-  
-} else if (winState == "o") {
-  gameOutputMsg.innerHTML = "O wins";
-  
-} else if (winState == "d") {
-  gameOutputMsg.innerHTML = "draw";
-  
-} else {
-  gameOutputMsg.innerHTML = "unknown";
-}
-
-*/
