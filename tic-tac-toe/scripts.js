@@ -121,7 +121,7 @@ function clickSquare() {
 
 
 
-    currentPlayer.innerHTML = currentTurn;
+    currentPlayer.innerHTML = currentTurn.toUpperCase();
   }
 }
 
