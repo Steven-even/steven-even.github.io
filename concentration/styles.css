@@ -1,5 +1,6 @@
 body {
     margin: 0;
+
     padding: 20px;
     padding-bottom: 30px;
     display: flex;
@@ -27,6 +28,7 @@ h1{
     background-position: center;
     z-index: -1;
     opacity: 0.9;
+
 }
 
 .container {
@@ -36,6 +38,7 @@ h1{
 }
 
 .cards {
+    padding-bottom: 3rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -43,7 +46,7 @@ h1{
     margin-top: 30px;
     backface-visibility: hidden;
     perspective: 1000px;
-    
+    transition: opacity 1.5s;
 }
 
 * {
@@ -55,8 +58,48 @@ h1{
   width: 20vw;
   height: 35vw;
   max-width: 20vw;
-  max-height: 25vw;
+  max-height: 20vw;
   perspective: 1000px; /* special CSS property relevant to 3D flips */
+}
+.matched{
+  transition-delay: 1s;
+  opacity:0;
+  
+}
+
+#winning{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 6em;
+  font-family: "Bowlby One SC", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+  background-image: url("./images/stars.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 30vh;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  display: none;
+  transition: opacity .8s;
+  z-index: 2;
+  text-align: center;
+}
+#playerTurnCounter{
+  font-size: 30px;
+  font-family: "Bowlby One SC", sans-serif;
+  font-weight: 400;
+  color: white;
+  background-color:#130f14;
+  width: 150px;
+  border-radius: 10px;
+  padding: 0;
+  margin: 0 auto;
 }
 
 .cardContent {
@@ -67,7 +110,7 @@ h1{
   transform-style: preserve-3d; /* special CSS property relevant to 3D flips */
 }
 
-.outerCard:hover .cardContent {
+.outerCard.clicked .cardContent {
   transform: rotateY(180deg); /* simulate a 3D flip */
 }
 
