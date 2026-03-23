@@ -84,8 +84,16 @@ h1{
   align-items: center;
   text-align: center;
 }
+/**** not responsive ****/
+@media (max-width: 740px) {
+  .card h2{
+    font-size: .2em;
+    
+  }
+}
 
 .card h2 {
+    margin: 0;
   position: relative;
   font-size: 2em;
   font-family: "Barrio", system-ui;

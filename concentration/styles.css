@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    padding: 20px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+h1{
+    font-size: 3.3em;
+    font-family: "Bowlby One SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px #000000, 0 0 5px #000000;
+    border-bottom: #ddd 2px solid;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("./images/stars.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.9;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.outerCard {
+  position: relative;
+  width: 20vw;
+  height: 35vw;
+  max-width: 20vw;
+  max-height: 25vw;
+  perspective: 1000px; /* special CSS property relevant to 3D flips */
+}
+
+.cardContent {
+  position: absolute; /* positioning within the parent card object */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d; /* special CSS property relevant to 3D flips */
+}
+
+.outerCard:hover .cardContent {
+  transform: rotateY(180deg); /* simulate a 3D flip */
+}
+
+.card {
+  position: absolute;
+  flex: 0 1 calc(25% - 15px);
+  width: 200px;
+  height: 250px;
+  align-items: center;
+  border: 1px solid #ffffff;
+  padding: 1vw;
+  transition: transform 0.3s ease;
+  transform: rotateY(180deg);
+  align-items: center;
+  text-align: center;
+}
+/**** not responsive ****/
+@media (max-width: 740px) {
+  .card h2{
+    font-size: .2em;
+    
+  }
+}
+
+.card h2 {
+    margin: 0;
+  position: relative;
+  font-size: 2em;
+  font-family: "Barrio", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.card-img {
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  width:91%;
+  height: 70%;
+  border-radius: 4px;
+  background-size: cover;
+  background-position: center;
+
+}
+
+
+.cardTop,
+.card {
+  position: absolute; /* positioning within the parent cardContent object */
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  backface-visibility: hidden; /* special CSS property relevant to 3D flips */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} 
+
+
+
+
+
+/* Image classes*/
+.card-img.earth { 
+    background-image: url("./images/earth.jpeg"); }
+.card-img.mars { 
+    background-image: url("./images/mars.jpeg"); }
+.card-img.uranus { 
+    background-image: url("./images/uranus.jpeg"); }
+.card-img.saturn { 
+    background-image: url("./images/saturn.jpeg"); }
+.card-img.moon { 
+    background-image: url("./images/moon.jpeg"); }
+.card-img.venus { 
+    background-image: url("./images/Venus.jpeg"); }
+.card-img.sun { 
+    background-image: url("./images/sun.jpeg"); }
+.card-img.jupiter { 
+    background-image: url("./images/jupiter.jpeg"); }
+
+.card-bottom {
+    transform: rotateY(180deg);
+}
