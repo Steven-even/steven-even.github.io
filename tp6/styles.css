@@ -1,110 +1,119 @@
-html{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
-body{
+
+body {
   width: 90%;
   margin: auto;
-  background-image: url("./images/gradient.avif");
+  background-color: rgb(212, 219, 244);
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
 
-
 }
 
 
 
-p{
-  font-family: "Play", sans-serif;
+p {
+  font-family: "Contrail One", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-h1, h2 {
-  font-family: "DynaPuff", system-ui;
-  font-optical-sizing: auto;
-  font-weight: 700;
+
+h1,
+h2 {
+  font-family: "Contrail One", sans-serif;
+  font-weight: 400;
   font-style: normal;
-  font-variation-settings: "wght" 700;
+  text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 5px #9f9f9f, 0 0 1px #000000;
 }
 
-header{
+header {
   position: relative;
   width: 100%;
   height: min(150px, 20vh);
   margin-bottom: 1em;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 8px rgb(170, 174, 191);
 }
 
-header h1{
-    position: relative;
-    z-index: 1;
-    padding: 0.4em;
+header h1 {
+  position: relative;
+  z-index: 1;
+  padding: 0.4em;
   font-size: clamp(1.6rem, 4vw, 3em);
-    color: rgb(46, 78, 133);
-    background-color: white;
-    border-radius: 12px;
+  color: rgb(46, 78, 133);
+  background-color: white;
+  border-radius: 2px;
 
 }
 
-.background-image{
+.background-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position : absolute;
+  position: absolute;
   top: 0;
   z-index: -1;
 }
+
 .side-by-side {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1em;
-    width: 100%;
-    height: auto;
-    text-align: center;
-    align-items: center;
-    align-content: center;
-    padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  padding: 1rem;
 }
 
-.forecast-day{
-      background-color: #e9f2f9;
-      border-radius: 12px;
-      width: 9vw;
+.forecast-day {
+  background-color: #e9f2f9;
+  border-radius: 4px;
+  box-shadow: dimgray 0px 1px 3px;
+  width: 9vw;
 
 }
-.forecast-day p{
-    margin: 0.5em 0;
-    font-size: 2em;
+
+.forecast-day p {
+  margin: 0.5em 0;
+  font-size: 2em;
 }
 
-.wind-speed, .wind-direction{
-    font-size: 1.4em;
-    color: rgb(46, 78, 133);
-    padding: .2em 0;
-    margin: auto;
+.wind-speed,
+.wind-direction {
+  font-size: 1.4em;
+  color: rgb(46, 78, 133);
+  padding: .2em 0;
+  margin: auto;
 }
 
-.date{
-    font-size: .7em;
-    color: rgb(46, 78, 133);
+.date {
+  font-size: .7em;
+  color: rgb(46, 78, 133);
 }
+
 .summary {
-    background-color: #e9f2f9;
-    padding: 1em;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    align-self: center;
-    margin: 0 auto;
-    height: auto;
- }
+  background-color: #e9f2f9;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  align-self: center;
+  margin: 0 auto;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: dimgray 0px 1px 3px;
+}
 
-.header-inner{
+.header-inner {
   position: relative;
   display: flex;
   align-items: center;
@@ -115,63 +124,69 @@ header h1{
   margin: 0;
 }
 
-.header-inner h1{
-  margin:0;
+.header-inner h1 {
+  margin: 0;
   font-size: clamp(1.4rem, 4vw, 2.2rem);
-  color: rgb(46,78,133);
+  color: rgb(46, 78, 133);
 }
 
-.current-conditions{
+.current-conditions {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.1em;
   color: rgb(46, 78, 133);
-  font-family: "DynaPuff", system-ui;
-  font-optical-sizing: auto;
-  font-weight: 700;
+  font-family: "Contrail One", sans-serif;
+  font-weight: 400;
   font-style: normal;
-  font-variation-settings: "wght" 700;
+  text-align: center;
+  align-items: center;
 
 }
 
-.current-conditions .temp{
+.temp {
   font-size: 2.2rem;
   font-weight: 700;
-}
-.current-conditions .cond{
-  font-size: 1.1rem;
-  font-weight: 700;
+  text-shadow: 2px 3px 2px rgb(255, 255, 255), 0 0 5px #9f9f9f, 0 0 1px #cfcfcf;
 }
 
-.main-nav{
+.cond {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 5px #9f9f9f, 0 0 1px #cfcfcf;
+}
+
+.main-nav {
   display: flex;
   gap: 0.75em;
   align-items: center;
-  font-family: "Play", sans-serif;
+  font-family: "Contrail One", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(0.9rem, 2.5vw, 1.2em);
+  font-size: 1.4rem;
   float: left;
 }
 
-.nav-btn{
+.nav-btn {
   display: inline-block;
   padding: 0.35em 0.7em;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   color: rgb(46, 78, 133);
   text-decoration: none;
   border-radius: 8px;
   font-weight: 600;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
-.nav-btn:hover{
-  background: rgba(255,255,255,1);
+.nav-btn:hover {
+  background: rgba(212, 219, 244);
+  color: rgb(9, 19, 37);
   transform: translateY(-1px);
+  transition: .3s ease;
+  opacity: 0.9;
 }
 
-.weather-widget{
+.weather-widget {
   display: flex;
   gap: 1em;
   justify-content: center;
@@ -180,9 +195,27 @@ header h1{
   width: 100%;
 }
 
-.condition-icon{
-  font-size: clamp(1rem, 4vw, 1.6rem);
+.condition-icon {
+  font-size: 3em;
   margin: 0.4em 0;
+  padding: 0;
+}
+
+
+.footer-content{
+  text-align: center;
+  padding: 1em 0;
+  background-color: rgb(212, 219, 244);
+  color: rgb(46, 78, 133);
+  font-family: "Contrail One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-top: 1px solid rgb(46, 78, 133);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
 }
 
 /* Mobile screens */
@@ -191,12 +224,12 @@ header h1{
     background-attachment: scroll;
   }
 
-  header{
+  header {
     height: 20vh;
     padding: 0.6em 0;
   }
 
-  .main-nav{
+  .main-nav {
     flex-direction: column;
     align-items: right;
     translate: 300px -50px;
@@ -216,37 +249,33 @@ header h1{
     margin-left: 0;
   }
 
-  .header-inner{
+  .header-inner {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.6em;
     padding: 0 0.8em;
   }
 
-  .header-inner h1{
+  .header-inner h1 {
     font-size: clamp(1.4rem, 6vw, 1.8rem);
     background-clip: padding-box;
   }
 
-  .current-conditions{
+  .current-conditions {
     align-items: flex-start;
   }
 
-  .forecast-day p{
+  .forecast-day p {
     font-size: 1.2rem;
   }
 
-  .wind-speed, .wind-direction{
+  .wind-speed,
+  .wind-direction {
     font-size: 1rem;
   }
 
-  .nav-btn{
+  .nav-btn {
     padding: 0.3em 0.6em;
     font-size: 0.95rem;
   }
 }
-
-
-
-
-
