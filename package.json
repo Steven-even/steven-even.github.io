@@ -1,0 +1,11 @@
+{
+  "name": "steven-even.github.io",
+  "version": "1.0.0",
+  "description": "Personal website",
+  "scripts": {
+    "serve": "serve -p 8000"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}
