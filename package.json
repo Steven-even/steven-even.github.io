@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Personal website",
   "scripts": {
-    "serve": "serve -p 8000"
+    "serve": "serve -p 8000",
+    "http-serve": "http-server -p 8000 --host 0.0.0.0",
+    "start": "http-server weather-app -p 8000 --host 0.0.0.0"
   },
   "dependencies": {
     "http-server": "^14.1.1",
