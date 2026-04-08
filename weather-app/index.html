@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Weather App 2.0</title>
-    <script src="/scripts.js" defer></script>
+    <script src="/weather-app/scripts.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Contrail+One&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Yrsa:ital,wght@0,300..700;1,300..700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css" media="all">
+    <link rel="stylesheet" href="/weather-app/styles.css" media="all">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,16 +31,16 @@
         <form id ="locationForm">
             <label for="location">Enter Location:</label>
             <input type="text" id="locationBox" name="location" required>
-            <button type="submit">Get Weather</button>
+            <button type="submit" class="search-btn">Get Weather</button>
         </form>
     </div>
     <button id="findLocation">New Location</button>
         
 
     <header>
-        <img src="/images/sky.jpg" alt="Logo" class="background-image">
+        <img src="/weather-app/images/sky.jpg" alt="Logo" class="background-image">
         <div class="header-inner">
-            <h1>Chicago Weather</h1>
+            <h1>Weather</h1>
             <div class="current-conditions">
                 <div class="temp"><span></span>°F</div>
                 <div class="cond">Sunny</div>
@@ -59,65 +59,45 @@
     <section class="side-by-side">
         <div class="weather-widget">
             <div class="forecast-day">
-                <p>Sun <span class="date">2/2</span></p>
+                <p>Today</p>
                 <div class="condition-icon">☀️</div>
-                <div class ="day-temp"><span></span>°F</div>
+                <div class="day-temp">
+                    <span></span>°F
+                </div>
                 <div class="wind-speed">15 mph</div>
-                <div class=" status">N</div>
+                <div class="status">N</div>
             </div>
+
             <div class="forecast-day">
-                <p>Mon <span class="date">2/3</span></p>
+                <p>Tomorrow</p>
                 <div class="condition-icon">☀️</div>
-                <div class ="day-temp"><span></span>°F</div>
+                <div class="day-temp">
+                    <span></span>°F
+                </div>
                 <div class="wind-speed">15 mph</div>
-                <div class=" status">N</div>
+                <div class="status">N</div>
             </div>
+
             <div class="forecast-day">
-                <p>Tue <span class="date">2/4</span></p>
+                <p>Overmorrow</p>
                 <div class="condition-icon">🌤️</div>
-                <div class ="day-temp"><span></span>°F</div>
+                <div class="day-temp">
+                    <span></span>°F
+                </div>
                 <div class="wind-speed">15 mph</div>
-                <div class=" status">N</div>
-            </div>
-            <div class="forecast-day">
-                <p>Wed <span class="date">2/5</span></p>
-                <div class="condition-icon">🌧️</div>
-                <div class ="day-temp"><span></span>°F</div>
-                <div class="wind-speed">15 mph</div>
-                <div class=" status">N</div>
-            </div>
-            <div class="forecast-day">
-                <p>Thu <span class="date">2/6</span></p>
-                <div class="condition-icon">⛅</div>
-                <div class ="day-temp"><span></span>°F</div>
-                <div class="wind-speed">15 mph</div>
-                <div class=" status">N</div>
-            </div>
-            <div class="forecast-day">
-                <p>Fri <span class="date">2/7</span></p>
-                <div class="condition-icon">🌩️</div>
-                <div class ="day-temp"><span></span>°F</div>
-                <div class="wind-speed">15 mph</div>
-                <div class=" status">N</div>
-            </div>
-            <div class="forecast-day">
-                <p>Sat <span class="date">2/8</span></p>
-                <div class="condition-icon">☀️</div>
-                <div class ="day-temp"><span></span>°F</div>
-                <div class="wind-speed">15 mph</div>
-                <div class=" status">N</div>
+                <div class="status">N</div>
             </div>
         </div>
         <div class="summary">
-            <h2>5-Day Weather Summary</h2>
+            <h2>3-Day Weather Summary</h2>
             <p>Expect a mix of sunny, cloudy, and rainy days throughout the week with temperatures ranging from the high
                 50s to upper 60s. Winds will be consistently coming from the north at around 15 mph.</p>
         </div>
     </section>
-</body>
 
-<footer>
-    <div class="footer-content">
-        <p>&copy; 2026 Steven Perez. All rights reserved.</p>
-    </div>
-</footer>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Steven Perez. All rights reserved.</p>
+        </div>
+    </footer>
+</body>

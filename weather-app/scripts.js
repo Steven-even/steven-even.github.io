@@ -1,14 +1,13 @@
 //weather API global variables
 const weatherUrl = 'https://weatherapi-com.p.rapidapi.com/forecast.json?days=3&q=';
 const weatherOptions = {
-    method: 'GET',
-    headers: {
-        'x-rapidapi-key': '3be5c42222msh87ba54a21a304e3p13f5f9jsn13227e04e32e',
-        'x-rapidapi-host': 'weatherapi-com.p.rapidapi.com',
-        'Content-Type': 'application/json'
-    }
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': '3be5c42222msh87ba54a21a304e3p13f5f9jsn13227e04e32e',
+		'x-rapidapi-host': 'weatherapi-com.p.rapidapi.com',
+		'Content-Type': 'application/json'
+	}
 };
-
 
 
 //prepareing variables
@@ -108,14 +107,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.toggle("show-modal");
     });
 
-    document.querySelector("#locationform").addEventListener("submit", function (event) {
+    document.querySelector("#locationForm").addEventListener("submit", function (event) {
 
         // stop form from submitting to server
         event.preventDefault();
 
 
         document.body.classList.toggle("show-modal");
-        let newLocation = documentquerySelector("#locationBox").value;
+        let newLocation = document.querySelector("#locationBox").value;
 
         //add passed value number to weather Url for lookup
         let weatherLookupUrl = weatherUrl + newLocation;
@@ -124,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
         getData(weatherLookupUrl, weatherOptions).then(function (weatherResult) {
             console.log(weatherResult);
             updateWeather(weatherResult);
+            document.querySelector(".header-inner h1").innerHTML = newLocation.toUpperCase();
         });
     });
 
