@@ -1,65 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Media Finder App</title>
+  <title>Inspect</title>
   <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
 
+  <!--SEARCH ENGINE-->
+  <nav>
+
+
+    <section id="search">
+      <input type="text" id="searchInput" placeholder="Search for a movie...">
+      <button class="searchButton" onclick="handleSearch()">Search</button>
+    </section>
+
+
+    <section id="library">
+      <div class="library-trigger">
+        <h2>My Library</h2>
+      </div>
+      <div class="dropdown-menu">
+        <a href="#" id="watchLater">
+          <h3>Watch Later</h3>
+        </a>
+        <a href="#" id="watched">
+          <h3>Watched</h3>
+        </a>
+        <a href="#" id="favorites">
+          <h3>Favorites</h3>
+        </a>
+      </div>
+    </section>
+  </nav>
+
+  <div class = "shapes">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+  </div>
+
   <header>
-    <h1>🎬 Media Finder</h1>
-    <p>Search for movies and save them to your library</p>
+    <h1>Inspect<span> any movie or show of your choice</span></h1>
   </header>
 
-
-<!--SEARCH ENGINE-->
-
-  <section id="search-section">
-    <input 
-      type="text" 
-      id="searchInput" 
-      placeholder="Search for a movie..."
-    >
-    <button onclick="handleSearch()">Search</button>
-  </section>
-
-
- 
   <!--  RESULTS SECTION -->
 
-  <section>
-    <h2>Results</h2>
-    <div id="results" class="grid"></div>
-  </section>
-
-
-  <!-- DETAILS SECTION -->
-  
-  <section>
-    <h2>Details</h2>
-    <div id="details"></div>
-  </section>
-
-
-  <!-- LIBRARY SECTION -->
-
-  <section>
-    <h2>My Library</h2>
-
-    <h3>Watch Later</h3>
-    <div id="watchLater"></div>
-
-    <h3>Watched</h3>
-    <div id="watched"></div>
-  </section>
-
-
-
+  <div>
+    <section class="divider">
+      <h2>Results</h2>
+      <div id="results" class="grid">
+        <p>Search for a movie or show to see results here.</p>
+      
+      </div>
+      
+  </div>
 
 
 </body>
 <script src="app.js"></script>
+
 </html>

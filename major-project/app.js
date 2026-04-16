@@ -1,47 +1,99 @@
 
-// TMDB MEDIA APP 
 
+// ===============================
+// 🎬 TMDB MEDIA APP
+// ===============================
 
 // 🔑 API KEY
-const API_KEY = "cde1749586d2a3fb9fb009e0a840170a";
+let API_KEY = "cde1749586d2a3fb9fb009e0a840170a";
 
 // 🌐 BASE URLS
-const BASE_URL = "https://api.themoviedb.org/3";
-const IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
+let BASE_URL = "https://api.themoviedb.org/3";
+let IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
+
+// 📄 STATE (for pagination)
+let currentPage = 1;
+let currentQuery = "";
+
+
+// ===============================
+// 🔍 SEARCH MEDIA (WITH PAGES)
+// ===============================
+async function searchMedia(query, page = 1) {
+  const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log("Search Data:", data);
+
+    // If first page → clear results
+    if (page === 1) {
+      displaySearchResults(data.results, true);
+    } else {
+      displaySearchResults(data.results, false);
+    }
+
+  } catch (error) {
+    console.error("Search error:", error);
+  }
+}
 
 
 // ===============================
 // 🎬 DISPLAY SEARCH RESULTS
 // ===============================
-function displaySearchResults(results) {
+function displaySearchResults(results, clear = false) {
   const container = document.getElementById("results");
-  container.innerHTML = ""; // clear previous results
+
+  // Clear only on first load
+  if (clear) {
+    container.innerHTML = "";
+  }
 
   if (!results || results.length === 0) {
-    container.innerHTML = "<p>No results found.</p>";
+    if (clear) {
+      container.innerHTML = "<p>No results found.</p>";
+    }
     return;
   }
 
+  // BY POPULARITY
+ results.sort((a, b) => {
+  const query = currentQuery.toLowerCase();
+
+  const aMatch = a.title.toLowerCase().includes(query);
+  const bMatch = b.title.toLowerCase().includes(query);
+
+  if (aMatch && !bMatch) return -1;
+  if (!aMatch && bMatch) return 1;
+
+  const scoreA = a.popularity + (a.vote_count * a.vote_average);
+  const scoreB = b.popularity + (b.vote_count * b.vote_average);
+
+  return scoreB - scoreA;
+});
+
   results.forEach(movie => {
     const title = movie.title;
-    const description = movie.overview;
     const posterPath = movie.poster_path;
 
-    // ✅ Handle missing image
     const imageUrl = posterPath
       ? `${IMAGE_BASE}${posterPath}`
-      : "https://via.placeholder.com/200x300?text=No+Image";
+      : "/Images/no-image.png";
 
     const div = document.createElement("div");
-    div.classList.add("movie-card");
+    div.classList.add("grid-container");
 
     div.innerHTML = `
-      <h3>${title}</h3>
-      <img src="${imageUrl}" alt="${title}">
-      <p>${description}</p>
-      <button onclick="getMediaDetails(${movie.id})">
-        View Details
-      </button>
+      <div class="movie-card">
+        <button onclick="getMediaDetails(${movie.id})">
+          <img src="/Images/dots.png" alt="Details">
+        </button>
+        <img src="${imageUrl}" alt="${title}">
+        <h3>${title}</h3>
+      </div>
     `;
 
     container.appendChild(div);
@@ -50,13 +102,14 @@ function displaySearchResults(results) {
 
 
 
-//  GET MEDIA DETAILS
+//  GET MEDIA DETAILS (FIXED)
 
 async function getMediaDetails(id) {
   const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}`;
 
   try {
-    const response = await fetch(url, options);
+    // ❌ YOU HAD options HERE (REMOVE IT)
+    const response = await fetch(url);
     const data = await response.json();
 
     console.log("Details Data:", data);
@@ -68,8 +121,8 @@ async function getMediaDetails(id) {
   }
 }
 
-
 //  DISPLAY MEDIA DETAILS
+
 function displayMediaDetails(movie) {
   const container = document.getElementById("details");
 
@@ -86,21 +139,48 @@ function displayMediaDetails(movie) {
   `;
 }
 
-async function searchMedia(query) {
-  const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`;
 
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
 
-    console.log(data);
+//  SEARCH HANDLER
 
-    displaySearchResults(data.results);
+window.handleSearch = function () {
+  const input = document.getElementById("searchInput").value;
 
-  } catch (error) {
-    console.error("Search error:", error);
-  }
+  if (!input.trim()) return;
+
+  currentQuery = input;
+  currentPage = 1;
+
+  searchMedia(currentQuery, currentPage);
+};
+
+
+
+/// ENTER KEY
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("searchInput");
+
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  });
+});
+
+
+
+//  LOAD MORE 
+
+function loadMore() {
+  currentPage++;
+  searchMedia(currentQuery, currentPage);
 }
+
+
+/////////////////////////End of importing API////////////////////////
+
+
 
 
 
