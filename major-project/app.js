@@ -105,14 +105,14 @@ function displaySearchResults(results, clear = false) {
   if (clear) container.innerHTML = "";
 
   if (!results || results.length === 0) {
-    container.innerHTML = "<p>No results found.</p>";
+    container.innerHTML = "<p>No results found.</p>";// checking if there are results to display
     return;
   }
 
   results.forEach(item => {
     let imageUrl;
 
-    if (item.type === "movie" || item.type === "tv") {
+    if (item.type === "movie" || item.type === "tv") {//has different image handling for movies/tv vs anime 
       imageUrl = item.poster_path
         ? `${IMAGE_BASE}${item.poster_path}`
         : "/Images/no-image.png";
@@ -131,21 +131,21 @@ function displaySearchResults(results, clear = false) {
         <h3>${item.title}</h3>
         <p>${item.type.toUpperCase()}</p>
       </div>
-    `;
+    `;//inserts a new div to display the  results with a details button
 
     container.appendChild(div);
 
-    
-    });
-    //applies event listener to each details button after results are displayed
-    document.querySelectorAll(".details-btn").forEach(button => {
-      button.addEventListener("click", function () {
-        const id = this.getAttribute("data-id");
-        const type = this.getAttribute("data-type");
 
-        handleDetails(id, type);
-      
-      });
+  });
+  //applies event listener to each details button after results are displayed
+  document.querySelectorAll(".details-btn").forEach(button => {
+    button.addEventListener("click", function () {
+      let id = this.getAttribute("data-id");
+      let type = this.getAttribute("data-type");
+
+      handleDetails(id, type);
+
+    });
   });
 }
 
@@ -223,6 +223,8 @@ function displayMovieDetails(movie) {
     <p>${movie.release_date}</p>
   `;
   openModal();
+  document.body.style.overflow = 'hidden';
+
 }
 
 //  DISPLAY TV DETAILS
@@ -242,6 +244,8 @@ function displayTVDetails(show) {
     <p>First Air Date: ${show.first_air_date}</p>
   `;
   openModal();
+  document.body.style.overflow = 'hidden';
+
 }
 
 //  DISPLAY ANIME DETAILS
@@ -257,6 +261,8 @@ function displayAnimeDetails(anime) {
     <p>Episodes: ${anime.episodes}</p>
   `;
   openModal();
+  document.body.style.overflow = 'hidden';
+
 }
 
 
@@ -268,6 +274,8 @@ function openModal() {
 
 function closeModal() {
   document.getElementById("modal").style.display = "none";
+  document.body.style.overflow = 'auto';
+
 }
 
 //close modal when clicking outside of it
