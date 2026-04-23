@@ -25,32 +25,35 @@ body {
     z-index: -1
 }
 
-.shapeContainer{
+.shapeContainer {
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
     z-index: 0;
     pointer-events: none;
+    left: 0%;
+    transform: translateX(-1.5%);
 }
 
-.shape{
+.shape {
     background-color: var(--border-color);
     position: absolute;
-    
+
 }
 
-.shape1{
+.shape1 {
     width: 100%;
     height: 10%;
     top: 30px;
     border-radius: 50px 50px 0 0;
     max-height: 106px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.shape2{
+.shape2 {
     width: 10%;
     height: 100%;
     top: 30px;
@@ -58,37 +61,29 @@ body {
     border-radius: 50px 50px 0 0;
     max-width: 106px;
 }
-.shape3{
+
+.shape3 {
     width: 10%;
     height: 100%;
     top: 30px;
     right: 0%;
-    border-radius:0 50px 50px 0;
+    border-radius: 0 50px 50px 0;
     max-width: 106px;
 }
+
 nav {
     width: 100%;
     position: relative;
     top: 150px;
     z-index: 100;
+    left: 50%;
+    transform: translateX(-50%);
     flex-direction: row;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: .3s ease-in-out;
     gap: 0px;
-
-
-
-    @media (max-width: 1024px) {
-        flex-direction: row;
-        top: 100px;
-    }
-
-    @media (max-width: 767px) {
-        flex-direction: row;
-        top: 100px;
-    }
 }
 
 
@@ -123,7 +118,8 @@ nav {
 
 
 #search {
-    width: 100%;
+    width: 50%;
+    left: 50%;
     display: flex;
     justify-content: center;
     margin-bottom: 50px;
@@ -150,6 +146,7 @@ nav {
     cursor: pointer;
     transition: .3s ease-in-out;
     font-size: 1.2em;
+
 }
 
 .searchButton:hover {
@@ -159,7 +156,7 @@ nav {
 }
 
 header {
-    margin-top: 200px;
+    margin-top: 100px;
     position: relative;
     display: flex;
     flex-direction: row;
@@ -186,17 +183,18 @@ h1 span {
 }
 
 #library {
+    width: 10%;
     display: flex;
+    justify-content: center;
     margin-bottom: 50px;
-    flex-direction: column;
-    position: relative;
+    gap: 15px;
+    left: 70%;
 
 }
 
 .library-trigger {
     cursor: pointer;
     user-select: none;
-
 }
 
 .library-trigger h2 {
@@ -212,9 +210,8 @@ h1 span {
     width: 100%;
     align-items: center;
     text-align: center;
-    margin: 10px 0;
     width: 100%;
-    padding: 25px 20px;
+    padding: 20px;
 }
 
 .library-trigger:hover h2 {
@@ -224,39 +221,40 @@ h1 span {
 
 }
 
-.dropdown-menu {
-    max-height: 0;
-    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
-    opacity: 0;
-    transform-origin: top;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    position: absolute;
-    translate: 0px 100px;
-
-
-}
-
-#library:hover .dropdown-menu {
-    max-height: 300px;
-    opacity: 1;
-
-}
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 4px;
-
+    grid-template-columns: repeat(auto-fit, minmax(calc(100% / 5 - 10px), 1fr));
+    gap: 5px;
+    padding: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(calc(100% / 2 - 10px), 1fr));
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3 - 10px), 1fr));
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(calc(100% / 4 - 10px), 1fr));
+    }
+}
+
 
 .divider {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     width: 70%;
-    margin-left: 15%;
+    margin-left: 11.5%;
+    justify-content: center;
     align-items: center;
     align-content: center;
 
@@ -294,7 +292,7 @@ h1 span {
 }
 
 .details-btn {
-    padding: 10px;
+    margin: auto;
     margin-bottom: 10px;
     border: none;
     border-radius: 100px;
@@ -302,15 +300,15 @@ h1 span {
     color: var(--light-color);
     cursor: pointer;
     transition: .3s ease-in-out;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: 
+
 }
 
 .details-btn:hover {
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 5px rgba(255, 255, 255, 0.4);
 }
 
 /*******modal styles*******/
@@ -358,9 +356,7 @@ h1 span {
 
 }
 
-#modalDetails h2 {
-
-}
+#modalDetails h2 {}
 
 #closeModal {
     position: fixed;
@@ -370,3 +366,95 @@ h1 span {
     cursor: pointer;
 }
 
+.library-container {
+    position: relative;
+    top: 150px;
+    width: 80%;
+    left: 10%;
+    margin-bottom: 100px;
+}
+
+.library-section {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.library-section h2 {
+    color: #3553a7;
+    margin-top: 0;
+}
+
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.library-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+}
+
+.library-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.library-item h3 {
+    margin: 5px 0;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.library-item p {
+    margin: 0;
+    font-size: 0.8em;
+    color: #949494;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 3px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.remove-btn:hover {
+    background-color: darkred;
+}
+
+.empty-message {
+    color: #949494;
+    text-align: center;
+    padding: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background-color: #3553a7;
+    color: #f0f0f0;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-btn:hover {
+    background-color: #2a4080;
+}

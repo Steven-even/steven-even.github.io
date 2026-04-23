@@ -12,7 +12,80 @@ let ANIME_KEY = "3be5c42222msh87ba54a21a304e3p13f5f9jsn13227e04e32e";
 
 let currentPage = 1;
 let currentQuery = "";
+let currentItem = null;
 
+// Save item to list in localStorage
+function saveToList(listName, item) {
+  let list = JSON.parse(localStorage.getItem(listName)) || [];
+  let exists = list.some(i => i.id === item.id && i.type === item.type);
+  if (!exists) {
+    list.push(item);
+    localStorage.setItem(listName, JSON.stringify(list));
+  }
+}
+
+// ===== LIBRARY DISPLAY FUNCTIONS =====
+
+// Display items from a list in a grid
+function displayList(listName, gridId) {
+  let list = JSON.parse(localStorage.getItem(listName)) || [];
+  let grid = document.getElementById(gridId);
+
+  if (!grid) return; // Element doesn't exist on this page
+
+  if (list.length === 0) {
+    grid.innerHTML = '<div class="empty-message">No items yet. Search and add from the main page!</div>';
+    return;
+  }
+
+  grid.innerHTML = '';
+
+  list.forEach((item, index) => {
+    let imageUrl;
+
+    if (item.type === "movie" || item.type === "tv") {
+      imageUrl = item.poster_path
+        ? IMAGE_BASE + item.poster_path
+        : "/Images/no-image.png";
+    } else {
+      imageUrl = item.poster_path || "/Images/no-image.png";
+    }
+
+    let itemDiv = document.createElement("div");
+    itemDiv.className = "library-item";
+    itemDiv.innerHTML = `
+      <button class="remove-btn" onclick="removeItem('${listName}', ${index})">X</button>
+      <img src="${imageUrl}">
+      <h3>${item.title}</h3>
+      <p>${item.type.toUpperCase()}</p>
+    `;
+
+    grid.appendChild(itemDiv);
+  });
+}
+
+// Remove item from a list by index
+function removeItem(listName, index) {
+  let list = JSON.parse(localStorage.getItem(listName)) || [];
+  list.splice(index, 1);
+  localStorage.setItem(listName, JSON.stringify(list));
+  
+  // Refresh the display
+  let gridId = listName === 'favorites' ? 'favoritesGrid' : listName === 'watchLater' ? 'watchLaterGrid' : 'watchedGrid';
+  displayList(listName, gridId);
+}
+
+// Initialize library on page load
+function initLibrary() {
+  let favoritesGrid = document.getElementById('favoritesGrid');
+  
+  // Only run this if we're on the library page
+  if (favoritesGrid) {
+    displayList('favorites', 'favoritesGrid');
+    displayList('watchLater', 'watchLaterGrid');
+    displayList('watched', 'watchedGrid');
+  }
+}
 
 //search through movies, tv shows, and anime based on the query and page number
 async function searchAllMedia(query, page = 1) {
@@ -215,12 +288,27 @@ function displayMovieDetails(movie) {
     ? `${IMAGE_BASE}${movie.poster_path}`
     : "/Images/no-image.png";
 
+  currentItem = {
+    id: movie.id,
+    title: movie.title,
+    overview: movie.overview,
+    poster_path: movie.poster_path,
+    vote_average: movie.vote_average,
+    release_date: movie.release_date,
+    type: "movie"
+  };
+
   container.innerHTML = `
     <h2>${movie.title}</h2>
     <img src="${imageUrl}">
     <p>${movie.overview}</p>
     <p>⭐ ${movie.vote_average}</p>
     <p>${movie.release_date}</p>
+    <div style="margin-top: 15px; display: flex; gap: 10px;">
+      <button onclick="saveToList('favorites', currentItem)">Add to Favorites</button>
+      <button onclick="saveToList('watchLater', currentItem)">Add to Watch Later</button>
+      <button onclick="saveToList('watched', currentItem)">Mark as Watched</button>
+    </div>
   `;
   openModal();
   document.body.style.overflow = 'hidden';
@@ -236,12 +324,27 @@ function displayTVDetails(show) {
       ? `${IMAGE_BASE}${show.poster_path}`
       : show.poster_path || "/Images/no-image.png";
 
+  currentItem = {
+    id: show.id,
+    title: show.name,
+    overview: show.overview,
+    poster_path: show.poster_path,
+    vote_average: show.vote_average,
+    release_date: show.first_air_date,
+    type: "tv"
+  };
+
   container.innerHTML = `
     <h2>${show.name}</h2>
     <img src="${imageUrl}">
     <p>${show.overview}</p>
     <p>⭐ ${show.vote_average}</p>
     <p>First Air Date: ${show.first_air_date}</p>
+    <div style="margin-top: 15px; display: flex; gap: 10px;">
+      <button onclick="saveToList('favorites', currentItem)">Add to Favorites</button>
+      <button onclick="saveToList('watchLater', currentItem)">Add to Watch Later</button>
+      <button onclick="saveToList('watched', currentItem)">Mark as Watched</button>
+    </div>
   `;
   openModal();
   document.body.style.overflow = 'hidden';
@@ -253,12 +356,27 @@ function displayTVDetails(show) {
 function displayAnimeDetails(anime) {
   let container = document.getElementById("modalDetails");
 
+  currentItem = {
+    id: anime._id,
+    title: anime.title,
+    overview: anime.synopsis,
+    poster_path: anime.image,
+    ranking: anime.ranking,
+    episodes: anime.episodes,
+    type: "anime"
+  };
+
   container.innerHTML = `
     <h2>${anime.title}</h2>
     <img src="${anime.image}">
     <p>${anime.synopsis}</p>
     <p>⭐ Rank: ${anime.ranking}</p>
     <p>Episodes: ${anime.episodes}</p>
+    <div style="margin-top: 15px; display: flex; gap: 10px;">
+      <button onclick="saveToList('favorites', currentItem)">Add to Favorites</button>
+      <button onclick="saveToList('watchLater', currentItem)">Add to Watch Later</button>
+      <button onclick="saveToList('watched', currentItem)">Mark as Watched</button>
+    </div>
   `;
   openModal();
   document.body.style.overflow = 'hidden';
@@ -303,14 +421,20 @@ window.handleSearch = function () {
 
 document.addEventListener("DOMContentLoaded", () => {
   let input = document.getElementById("searchInput");
+  let closeButton = document.getElementById("closeModal");
 
-  document.getElementById("closeModal").addEventListener("click", closeModal);
+  // Setup search page if elements exist
+  if (input && closeButton) {
+    closeButton.addEventListener("click", closeModal);
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        handleSearch();
+      }
+    });
+  }
 
-  input.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  });
+  // Setup library page if needed
+  initLibrary();
 });
 
 
