@@ -24,7 +24,6 @@ function saveToList(listName, item) {
   }
 }
 
-// ===== LIBRARY DISPLAY FUNCTIONS =====
 
 // Display items from a list in a grid
 function displayList(listName, gridId) {
@@ -64,7 +63,7 @@ function displayList(listName, gridId) {
   });
 }
 
-// Remove item from a list by index
+
 function removeItem(listName, index) {
   let list = JSON.parse(localStorage.getItem(listName)) || [];
   list.splice(index, 1);
@@ -75,7 +74,7 @@ function removeItem(listName, index) {
   displayList(listName, gridId);
 }
 
-// Initialize library on page load
+// library load
 function initLibrary() {
   let favoritesGrid = document.getElementById('favoritesGrid');
   
@@ -87,7 +86,7 @@ function initLibrary() {
   }
 }
 
-//search through movies, tv shows, and anime based on the query and page number
+//search through movies, tv shows, and anime
 async function searchAllMedia(query, page = 1) {
   try {
     // fetch movies, tv, and anime
@@ -145,7 +144,7 @@ async function searchAllMedia(query, page = 1) {
 }
 
 
-//  SEARCH ANIME
+//  animes
 
 async function searchAnime(query) {
   let url = `https://${ANIME_HOST}/anime?page=1&size=10&search=${query}`;
@@ -170,8 +169,7 @@ async function searchAnime(query) {
 
 
 
-//  RESULTS
-
+//  results from search
 function displaySearchResults(results, clear = false) {
   let container = document.getElementById("results");
 
@@ -204,13 +202,13 @@ function displaySearchResults(results, clear = false) {
         <h3>${item.title}</h3>
         <p>${item.type.toUpperCase()}</p>
       </div>
-    `;//inserts a new div to display the  results with a details button
+    `;//inserts a new div to display
 
     container.appendChild(div);
 
 
   });
-  //applies event listener to each details button after results are displayed
+  //applies event listener to each details button
   document.querySelectorAll(".details-btn").forEach(button => {
     button.addEventListener("click", function () {
       let id = this.getAttribute("data-id");
@@ -223,7 +221,7 @@ function displaySearchResults(results, clear = false) {
 }
 
 
-//  DETAILS HANDLER
+//  decide which details
 
 function handleDetails(id, type) {
   if (type === "movie") {
@@ -236,7 +234,7 @@ function handleDetails(id, type) {
 }
 
 
-// MOVIE DETAILS
+// movie details
 
 async function getMovieDetails(id) {
   let url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}`;
@@ -247,7 +245,7 @@ async function getMovieDetails(id) {
   displayMovieDetails(data);
 }
 
-// TV DETAILS
+// tv details
 
 async function getTVDetails(id) {
   let url = `${BASE_URL}/tv/${id}?api_key=${API_KEY}`;
@@ -259,7 +257,7 @@ async function getTVDetails(id) {
 }
 
 
-//  ANIME DETAILS
+//  anime details
 
 async function getAnimeDetails(id) {
   let url = `https://${ANIME_HOST}/anime/by-id/${id}`;
@@ -279,8 +277,7 @@ async function getAnimeDetails(id) {
 }
 
 
-//  DISPLAY MOVIE DETAILS
-
+//  display movie
 function displayMovieDetails(movie) {
   let container = document.getElementById("modalDetails");
 
@@ -315,7 +312,7 @@ function displayMovieDetails(movie) {
 
 }
 
-//  DISPLAY TV DETAILS
+//  TV details
 function displayTVDetails(show) {
   let container = document.getElementById("modalDetails");
 
@@ -351,7 +348,7 @@ function displayTVDetails(show) {
 
 }
 
-//  DISPLAY ANIME DETAILS
+//  anime details
 
 function displayAnimeDetails(anime) {
   let container = document.getElementById("modalDetails");
@@ -423,7 +420,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let input = document.getElementById("searchInput");
   let closeButton = document.getElementById("closeModal");
 
-  // Setup search page if elements exist
+  // Setup search page
   if (input && closeButton) {
     closeButton.addEventListener("click", closeModal);
     input.addEventListener("keypress", (e) => {
