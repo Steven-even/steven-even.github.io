@@ -68,7 +68,7 @@ function removeItem(listName, index) {
   let list = JSON.parse(localStorage.getItem(listName)) || [];
   list.splice(index, 1);
   localStorage.setItem(listName, JSON.stringify(list));
-  
+
   // Refresh the display
   let gridId = listName === 'favorites' ? 'favoritesGrid' : listName === 'watchLater' ? 'watchLaterGrid' : 'watchedGrid';
   displayList(listName, gridId);
@@ -77,7 +77,7 @@ function removeItem(listName, index) {
 // library load
 function initLibrary() {
   let favoritesGrid = document.getElementById('favoritesGrid');
-  
+
   // Only run this if we're on the library page
   if (favoritesGrid) {
     displayList('favorites', 'favoritesGrid');
@@ -195,12 +195,16 @@ function displaySearchResults(results, clear = false) {
 
     div.innerHTML = `
       <div class="movie-card">
-        <button class="details-btn" data-id="${item.id}" data-type="${item.type}">
-          <img src="/Images/dots.png">
-        </button>
+
         <img src="${imageUrl}">
         <h3>${item.title}</h3>
+
+        <div class="media-types">
         <p>${item.type.toUpperCase()}</p>
+        <button class="details-btn" data-id="${item.id}" data-type="${item.type}">
+            <img src="/Images/dots.png">
+        </button>
+        </div>
       </div>
     `;//inserts a new div to display
 
@@ -299,9 +303,11 @@ function displayMovieDetails(movie) {
     <h2>${movie.title}</h2>
     <img src="${imageUrl}">
     <p>${movie.overview}</p>
-    <p>⭐ ${movie.vote_average}</p>
-    <p>${movie.release_date}</p>
-    <div style="margin-top: 15px; display: flex; gap: 10px;">
+    <span>
+    <p class="rating">⭐ ${movie.vote_average}</p>
+    <p class="release-date">Release Date:${movie.release_date}</p>
+    </span>
+    <div>
       <button onclick="saveToList('favorites', currentItem)">Add to Favorites</button>
       <button onclick="saveToList('watchLater', currentItem)">Add to Watch Later</button>
       <button onclick="saveToList('watched', currentItem)">Mark as Watched</button>
@@ -335,9 +341,11 @@ function displayTVDetails(show) {
     <h2>${show.name}</h2>
     <img src="${imageUrl}">
     <p>${show.overview}</p>
-    <p>⭐ ${show.vote_average}</p>
-    <p>First Air Date: ${show.first_air_date}</p>
-    <div style="margin-top: 15px; display: flex; gap: 10px;">
+    <span>
+    <p class="rating">⭐ ${show.vote_average}</p>
+    <p class="release-date">Release Date: ${show.first_air_date}</p>
+    </span>
+    <div>
       <button onclick="saveToList('favorites', currentItem)">Add to Favorites</button>
       <button onclick="saveToList('watchLater', currentItem)">Add to Watch Later</button>
       <button onclick="saveToList('watched', currentItem)">Mark as Watched</button>
@@ -367,9 +375,11 @@ function displayAnimeDetails(anime) {
     <h2>${anime.title}</h2>
     <img src="${anime.image}">
     <p>${anime.synopsis}</p>
-    <p>⭐ Rank: ${anime.ranking}</p>
-    <p>Episodes: ${anime.episodes}</p>
-    <div style="margin-top: 15px; display: flex; gap: 10px;">
+    <span>
+    <p class="rating">⭐ Rank: ${anime.ranking}</p>
+    <p class="release-date">Release Date: ${anime.episodes}</p>
+    </span>
+    <div>
       <button onclick="saveToList('favorites', currentItem)">Add to Favorites</button>
       <button onclick="saveToList('watchLater', currentItem)">Add to Watch Later</button>
       <button onclick="saveToList('watched', currentItem)">Mark as Watched</button>

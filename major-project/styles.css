@@ -123,6 +123,7 @@ nav {
     justify-content: center;
     margin-bottom: 50px;
     gap: 15px;
+    z-index: 2;
 }
 
 
@@ -137,21 +138,28 @@ nav {
 }
 
 .searchButton {
-    color: var(--light-color);
-    background-color: var(--primary-color);
-    border: none;
-    padding: 15px 25px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: .3s ease-in-out;
     font-size: 1.2em;
+    margin: 0;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border-radius: 10px;
+    transition: .3s ease-in-out;
+    display: inline-block;
+    font-weight: normal;
+    max-height: auto;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    max-width: 150px;
+    border: none;
     
 }
 
 .searchButton:hover {
-    box-shadow: 0 0 40px 40px var(--light-color) inset;
-    translate: 0px -2px;
     color: var(--primary-color);
+    background-color: var(--light-color);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
 }
 
 header {
@@ -185,34 +193,38 @@ h1 span {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin: 0;
+    padding: 0;
     margin-bottom: 50px;
     gap: 15px;
     left: 70%;
     transform: translateX(10%);
+    z-index: 1;
 
 }
 
 .library-trigger {
     cursor: pointer;
     user-select: none;
+    width: 20%;
+    align-items: center;
+    text-align: center;
+    display: flex;
 
 }
 
 .library-trigger h2 {
     font-size: 1.2em;
-    margin: 0;
+    margin: 10px 0;
     background-color: var(--primary-color);
     color: var(--light-color);
     border-radius: 10px;
     transition: .3s ease-in-out;
     display: inline-block;
     font-weight: normal;
-    max-height: auto;
+    padding: 18.2px;
     width: 100%;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    padding: 20px;
+    
 }
 
 .library-trigger:hover h2 {
@@ -222,34 +234,36 @@ h1 span {
 
 }
 
-.dropdown-menu {
-    max-height: 0;
-    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
-    opacity: 0;
-    transform-origin: top;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    position: absolute;
-    translate: 0px 100px;
-
-
-}
-
-#library:hover .dropdown-menu {
-    max-height: 300px;
-    opacity: 1;
-
-}
-
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3 - 10px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(calc(100% / 1 - 10px), 1fr));
     gap: 5px;
     justify-content: center;
     align-items: center;
     align-content: center;
 
+}
+
+@media screen and (min-width: 800px) {
+    .grid {
+         grid-template-columns: repeat(auto-fit, minmax(calc(100% / 2 - 10px), 1fr));
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .grid {
+         grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3 - 10px), 1fr));
+    }
+}
+@media screen and (min-width: 1500px) {
+    .grid {
+         grid-template-columns: repeat(auto-fit, minmax(calc(100% / 4 - 10px), 1fr));
+    }
+}
+@media screen and (min-width: 2000px) {
+    .grid {
+         grid-template-columns: repeat(auto-fit, minmax(calc(100% / 5 - 10px), 1fr));
+    }
 }
 
 .divider {
@@ -280,10 +294,22 @@ h1 span {
 
 .movie-card h3 {}
 
-.movie-card:hover {}
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 10px 8px rgba(255, 255, 255, 0.4);
+}
 
 .movie-card img {
-    max-height: 200px;
+    height: 100%;
+    width: 80%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 150px;
+}
+.media-types button img {
+    height: 100%;
+    width: 80%;
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -293,6 +319,7 @@ h1 span {
     margin: 0;
     font-size: 0.9em;
     color: var(--grey-color);
+    justify-self: start;
 }
 
 .details-btn {
@@ -304,11 +331,16 @@ h1 span {
     color: var(--light-color);
     cursor: pointer;
     transition: .3s ease-in-out;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
+    justify-self: end;
+    align-items: right;
+    float: right;
+}
+.media-types {
+    padding: 10px 20px;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
 }
 
 .details-btn:hover {
@@ -337,13 +369,47 @@ h1 span {
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 50px;
-    left: 20%;
-    top: 20%;
+    top: 150px;
+    position: relative;
+    justify-content: center;
     align-content: center;
     display: flex;
     grid-template-columns: 1fr 4fr;
     gap: 20px;
+}
 
+@media screen and (max-width: 1100px) {
+    .modal-content {
+        width: 70%;
+        height: 70%;
+        top: 50px;        
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .modal-content {
+        width: 65%;
+        height: 65%;
+        top: 100px;        
+    }
+}
+
+#modalDetails {
+    margin-top: 15px;
+    gap: 10px;
+    width: 80%;
+}
+#modalDetails span{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
+.rating{
+    justify-self: start;
+}
+.release-date{
+    justify-self: end;
 }
 
 #modalDetails p {
@@ -370,5 +436,37 @@ h1 span {
     float: right;
     font-size: 24px;
     cursor: pointer;
+}
+
+#modalDetails div{
+    display: flex;
+    flex-direction: rows;
+    grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3 - 10px), 1fr));
+    width: 100%;
+    gap: 10px;
+}
+
+#modalDetails button{
+    margin-top: auto;
+    border: none;
+    border-radius: 100px;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 20px;
+    gap: 10px;
+    width: 33%;
+    margin: 10px 0 0 0;
+}
+
+#modalDetails button:hover{
+    color: var(--primary-color);
+    background-color: var(--light-color);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
 }
 
