@@ -323,24 +323,25 @@ h1 span {
 }
 
 .details-btn {
-    margin: auto;
-    margin-bottom: 10px;
+    margin: 0;
     border: none;
+    align-items: center;
+    display: block;
+    text-align: center;
     border-radius: 100px;
     background-color: var(--primary-color);
     color: var(--light-color);
     cursor: pointer;
     transition: .3s ease-in-out;
-    justify-self: end;
-    align-items: right;
-    float: right;
 }
 .media-types {
     padding: 10px 20px;
     gap: 10px;
     display: grid;
+    top: 85%;
     grid-template-columns: 1fr 1fr;
-    width: 100%;
+    width: 90%;
+    left: 5%;
 }
 
 .details-btn:hover {
@@ -399,7 +400,7 @@ h1 span {
     gap: 10px;
     width: 80%;
 }
-#modalDetails span{
+#modalDetails .rating-release {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
@@ -409,6 +410,19 @@ h1 span {
     justify-self: start;
 }
 .release-date{
+    justify-self: end;
+}
+
+#modalDetails .img-description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
+.show-image{
+    justify-self: start;
+}
+.description{
     justify-self: end;
 }
 

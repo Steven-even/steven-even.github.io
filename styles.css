@@ -20,18 +20,10 @@ body{
     flex-direction: column;
     min-height: 100vh;
     padding-bottom: 3rem;
-
     margin-left: auto;
     margin-right: auto;
-
-    background-image: url("./Images/hex.jpeg");
-    background-position: center center;
-    background-size: 200%;
-    background-attachment: fixed;
-
+    background: rgb(234, 234, 234);
 }
-
-
 
 h1{
     text-align: center;
@@ -71,7 +63,9 @@ h2{
 }
 
 section{
-  background-color: #212121;
+  background-color: #e2e2e2;
+  border: none;
+  box-shadow: inset 0 0 20px 2px rgba(0, 0, 0, 0.127);
   text-align: center;
   padding: 2.5em 1em;
   font-size: 16px;

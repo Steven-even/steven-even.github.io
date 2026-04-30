@@ -301,9 +301,11 @@ function displayMovieDetails(movie) {
 
   container.innerHTML = `
     <h2>${movie.title}</h2>
-    <img src="${imageUrl}">
-    <p>${movie.overview}</p>
-    <span>
+    <span class="img-description">
+    <img class="show-image" src="${imageUrl}">
+    <p class="description">${movie.overview}</p>
+    </span>
+    <span class="rating-release">
     <p class="rating">⭐ ${movie.vote_average}</p>
     <p class="release-date">Release Date:${movie.release_date}</p>
     </span>
@@ -339,9 +341,12 @@ function displayTVDetails(show) {
 
   container.innerHTML = `
     <h2>${show.name}</h2>
-    <img src="${imageUrl}">
-    <p>${show.overview}</p>
-    <span>
+    <span class="img-description">
+    <img class="show-image" src="${imageUrl}">
+    <p class="description">${show.overview}</p>
+    </span>
+
+    <span class="rating-release">
     <p class="rating">⭐ ${show.vote_average}</p>
     <p class="release-date">Release Date: ${show.first_air_date}</p>
     </span>
@@ -373,9 +378,11 @@ function displayAnimeDetails(anime) {
 
   container.innerHTML = `
     <h2>${anime.title}</h2>
-    <img src="${anime.image}">
-    <p>${anime.synopsis}</p>
-    <span>
+    <span class="img-description">
+    <img class="show-image" src="${anime.image}">
+    <p class="description">${anime.synopsis}</p>
+    </span>
+    <span class="rating-release">
     <p class="rating">⭐ Rank: ${anime.ranking}</p>
     <p class="release-date">Release Date: ${anime.episodes}</p>
     </span>
