@@ -14,6 +14,14 @@ let currentPage = 1;
 let currentQuery = "";
 let currentItem = null;
 
+// Helper function to truncate title to 17 characters
+function truncateTitle(title) {
+  if (title.length > 17) {
+    return title.substring(0, 17) + "...";
+  }
+  return title;
+}
+
 // Save item to list in localStorage
 function saveToList(listName, item) {
   let list = JSON.parse(localStorage.getItem(listName)) || [];
@@ -55,7 +63,7 @@ function displayList(listName, gridId) {
     itemDiv.innerHTML = `
       <button class="remove-btn" onclick="removeItem('${listName}', ${index})">X</button>
       <img src="${imageUrl}">
-      <h3>${item.title}</h3>
+      <h3>${truncateTitle(item.title)}</h3>
       <p>${item.type.toUpperCase()}</p>
     `;
 
@@ -175,6 +183,10 @@ function displaySearchResults(results, clear = false) {
 
   if (clear) container.innerHTML = "";
 
+  // Remove any existing load more card
+  let existingLoadMore = container.querySelector('.load-more-card');
+  if (existingLoadMore) existingLoadMore.remove();
+
   if (!results || results.length === 0) {
     container.innerHTML = "<p>No results found.</p>";// checking if there are results to display
     return;
@@ -197,7 +209,7 @@ function displaySearchResults(results, clear = false) {
       <div class="movie-card">
 
         <img src="${imageUrl}">
-        <h3>${item.title}</h3>
+        <h3>${truncateTitle(item.title)}</h3>
 
         <div class="media-types">
         <p>${item.type.toUpperCase()}</p>
@@ -212,6 +224,16 @@ function displaySearchResults(results, clear = false) {
 
 
   });
+
+  // Add load more card at the end
+  let loadMoreDiv = document.createElement("div");
+  loadMoreDiv.innerHTML = `
+    <div class="movie-card load-more-card">
+      <button onclick="loadMore()" class="load-more-btn">Load More</button>
+    </div>
+  `;
+  container.appendChild(loadMoreDiv);
+
   //applies event listener to each details button
   document.querySelectorAll(".details-btn").forEach(button => {
     button.addEventListener("click", function () {

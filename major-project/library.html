@@ -7,36 +7,34 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<nav div="library-nav">
-  <a href ="index.html" class = nav-link>Back</a>
-</nav>
-
-<div class="shapeContainer">
-  <div class="shape shape1"></div>
-  <div class="shape shape2"></div>
-  <div class="shape shape3"></div>
-</div>
-
 <body>
-  <div class="library-container">
-    <a href="index.html" class="back-btn">Back to Search</a>
+  <div class="shapeContainer">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+  </div>
 
+  <nav class="library-nav">
+    <a href="index.html" class="nav-link">Back to Search</a>
+  </nav>
+
+  <div class="library-container">
     <div class="library-section">
       <h2>Favorites</h2>
       <div class="library-grid" id="favoritesGrid"></div>
     </div>
 
     <div class="library-section">
-      <h2>Watch Later</h2>
-      <div class="library-grid" id="watchLaterGrid"></div>
-    </div>
-
-    <div class="library-section">
       <h2>Watched</h2>
       <div class="library-grid" id="watchedGrid"></div>
     </div>
+
+    <div class="library-section">
+      <h2>Watch Later</h2>
+      <div class="library-grid" id="watchLaterGrid"></div>
+    </div>
   </div>
 
+  <script src="app.js"></script>
 </body>
-<script src="app.js"></script>
 </html>
