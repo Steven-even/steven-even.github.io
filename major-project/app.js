@@ -329,7 +329,7 @@ function displayMovieDetails(movie) {
     </span>
     <span class="rating-release">
     <p class="rating">⭐ ${movie.vote_average}</p>
-    <p class="release-date">Release Date:${movie.release_date}</p>
+    <p class="release-date">Release Date:  ${movie.release_date}</p>
     </span>
     <div>
       <button onclick="saveToList('favorites', currentItem)">Add to Favorites</button>
@@ -371,6 +371,7 @@ function displayTVDetails(show) {
     <span class="rating-release">
     <p class="rating">⭐ ${show.vote_average}</p>
     <p class="release-date">Release Date: ${show.first_air_date}</p>
+    <p class="episodes">Episodes: ${show.number_of_episodes}</p>
     </span>
     <div>
       <button onclick="saveToList('favorites', currentItem)">Add to Favorites</button>
@@ -406,7 +407,8 @@ function displayAnimeDetails(anime) {
     </span>
     <span class="rating-release">
     <p class="rating">⭐ Rank: ${anime.ranking}</p>
-    <p class="release-date">Release Date: ${anime.episodes}</p>
+    <p class="episodes">Episodes: ${anime.episodes}</p>
+    <p class="release-date">Release Date: ------</p>
     </span>
     <div>
       <button onclick="saveToList('favorites', currentItem)">Add to Favorites</button>
