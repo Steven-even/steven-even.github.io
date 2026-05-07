@@ -105,6 +105,9 @@ body {
     margin-bottom: 10px;
     transition: .3s ease;
 }
+.library-item{
+    padding: 10px;
+}
 
 .library-section {
     padding: 20px;
