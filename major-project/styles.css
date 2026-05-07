@@ -135,8 +135,13 @@ body {
 
 .remove-btn{
     color: white;
+    width: 25px;
+    height: 25px;
     background-color: var(--border-color);
     border: solid 1px rgba(255, 255, 255, 0.215);
+    top: 0;
+    right: 0;
+
 }
 
 .library-link {
@@ -603,7 +608,10 @@ h1 span {
 }
 
 #modalDetails button:hover {
-    color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+#modalDetails button:active{
     background-color: var(--light-color);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+    color: var(--primary-color);
 }

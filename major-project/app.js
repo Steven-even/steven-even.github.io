@@ -34,9 +34,9 @@ function saveToList(listName, item) {
 
 
 // Display items from a list in a grid
-function displayList(listName, gridId) {
+function displayList(listName, favoritesGrid) {
   let list = JSON.parse(localStorage.getItem(listName)) || [];
-  let grid = document.getElementById(gridId);
+  let grid = document.getElementById(favoritesGrid);
 
   if (!grid) return; // Element doesn't exist on this page
 
@@ -78,8 +78,8 @@ function removeItem(listName, index) {
   localStorage.setItem(listName, JSON.stringify(list));
 
   // Refresh the display
-  let gridId = listName === 'favorites' ? 'favoritesGrid' : listName === 'watchLater' ? 'watchLaterGrid' : 'watchedGrid';
-  displayList(listName, gridId);
+  let favoritesGrid = listName === 'favorites' ? 'favoritesGrid' : listName === 'watchLater' ? 'watchLaterGrid' : 'watchedGrid';
+  displayList(listName, favoritesGrid);
 }
 
 // library load
@@ -471,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Setup library page if needed
+  // Initialize library if on library page
   initLibrary();
 });
 
